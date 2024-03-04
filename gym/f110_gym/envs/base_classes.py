@@ -299,7 +299,10 @@ class RaceCar(object):
                 self.params['v_switch'],
                 self.params['a_max'],
                 self.params['v_min'],
-                self.params['v_max'])
+                self.params['v_max'],
+                RaceCar.scan_simulator.map_img,
+                [RaceCar.scan_simulator.orig_x, RaceCar.scan_simulator.orig_y, RaceCar.scan_simulator.orig_c, RaceCar.scan_simulator.orig_s, RaceCar.scan_simulator.map_resolution],
+                [RaceCar.scan_simulator.map_height, RaceCar.scan_simulator.map_width])
 
             k2_state = self.state + self.time_step*(k1/2)
 
@@ -321,7 +324,10 @@ class RaceCar(object):
                 self.params['v_switch'],
                 self.params['a_max'],
                 self.params['v_min'],
-                self.params['v_max'])
+                self.params['v_max'],
+                RaceCar.scan_simulator.map_img,
+                [RaceCar.scan_simulator.orig_x, RaceCar.scan_simulator.orig_y, RaceCar.scan_simulator.orig_c, RaceCar.scan_simulator.orig_s, RaceCar.scan_simulator.map_resolution],
+                [RaceCar.scan_simulator.map_height, RaceCar.scan_simulator.map_width])
 
             k3_state = self.state + self.time_step*(k2/2)
 
@@ -343,7 +349,10 @@ class RaceCar(object):
                 self.params['v_switch'],
                 self.params['a_max'],
                 self.params['v_min'],
-                self.params['v_max'])
+                self.params['v_max'],
+                RaceCar.scan_simulator.map_img,
+                [RaceCar.scan_simulator.orig_x, RaceCar.scan_simulator.orig_y, RaceCar.scan_simulator.orig_c, RaceCar.scan_simulator.orig_s, RaceCar.scan_simulator.map_resolution],
+                [RaceCar.scan_simulator.map_height, RaceCar.scan_simulator.map_width])
 
             k4_state = self.state + self.time_step*k3
 
@@ -365,7 +374,10 @@ class RaceCar(object):
                 self.params['v_switch'],
                 self.params['a_max'],
                 self.params['v_min'],
-                self.params['v_max'])
+                self.params['v_max'],
+                RaceCar.scan_simulator.map_img,
+                [RaceCar.scan_simulator.orig_x, RaceCar.scan_simulator.orig_y, RaceCar.scan_simulator.orig_c, RaceCar.scan_simulator.orig_s, RaceCar.scan_simulator.map_resolution],
+                [RaceCar.scan_simulator.map_height, RaceCar.scan_simulator.map_width])
 
             # dynamics integration
             self.state = self.state + self.time_step*(1/6)*(k1 + 2*k2 + 2*k3 + k4)
@@ -389,7 +401,10 @@ class RaceCar(object):
                 self.params['v_switch'],
                 self.params['a_max'],
                 self.params['v_min'],
-                self.params['v_max'])
+                self.params['v_max'],
+                RaceCar.scan_simulator.map_img,
+                [RaceCar.scan_simulator.orig_x, RaceCar.scan_simulator.orig_y, RaceCar.scan_simulator.orig_c, RaceCar.scan_simulator.orig_s, RaceCar.scan_simulator.map_resolution],
+                [RaceCar.scan_simulator.map_height, RaceCar.scan_simulator.map_width])
             self.state = self.state + self.time_step * f
         
         else:

@@ -26,6 +26,8 @@ from numba import njit
 import unittest
 import time
 
+from f110_gym.envs.laser_models import xy_2_rc
+
 @njit(cache=True)
 def accl_constraints(vel, accl, v_switch, a_max, v_min, v_max):
     """
@@ -121,7 +123,7 @@ def vehicle_dynamics_ks(x, u_init, mu, C_Sf, C_Sr, lf, lr, h, m, I, s_min, s_max
     return f
 
 @njit(cache=True)
-def vehicle_dynamics_st(x, u_init, mu, C_Sf, C_Sr, lf, lr, h, m, I, s_min, s_max, sv_min, sv_max, v_switch, a_max, v_min, v_max):
+def vehicle_dynamics_st(x, u_init, mu, C_Sf, C_Sr, lf, lr, h, m, I, s_min, s_max, sv_min, sv_max, v_switch, a_max, v_min, v_max, map_img, dd, dd2):
     """
     Single Track Dynamic Vehicle Dynamics.
 
@@ -141,7 +143,9 @@ def vehicle_dynamics_st(x, u_init, mu, C_Sf, C_Sr, lf, lr, h, m, I, s_min, s_max
         Returns:
             f (numpy.ndarray): right hand side of differential equations
     """
-
+    _rc = xy_2_rc(x[0], x[1], dd[0], dd[1], dd[2], dd[3], dd2[0], dd2[1], dd[4])
+    mu = (map_img[_rc[0], _rc[1]] / 100.) * 2.1
+    print(map_img[_rc[0], _rc[1]])
     # gravity constant m/s^2
     g = 9.81
 

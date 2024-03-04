@@ -422,7 +422,15 @@ class ScanSimulator2D(object):
         self.orig_c = np.cos(self.origin[2])
 
         # get the distance transform
+        # In here it has to be "binary-like", but noone checks the map later
         self.dt = get_dt(self.map_img, self.map_resolution)
+
+        self.map_img = np.array(Image.open(map_img_path).transpose(Image.FLIP_TOP_BOTTOM))
+        self.map_img = self.map_img.astype(np.float64)
+
+        # grayscale -> binary
+        self.map_img[self.map_img < 155.] = 0.
+        self.map_img[self.map_img > 155.] = 255. - self.map_img[self.map_img > 155.]
 
         return True
 
